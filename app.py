@@ -48,15 +48,10 @@ st.header("""
 Youtube Advanced Video Summarizer :sunglasses:
 """)
 
-link = st.text_input("Enter video ID or link here")
+link = st.text_input("Enter YouTube Video link here")
+
 if len(link):
-    url_starter = 'https://www.youtube.com/watch?v='
-    n = len(url_starter)
-    if link[:5] == 'https':
-        st.video(link)
-    else:
-        
-        st.video(url_starter + link)
+    st.video(link)    
     models = ('Default','facebook/bart-large-cnn')
     selected_model = st.selectbox(label = "Select Model", options = models,placeholder ='Select Model...')
     if selected_model=='Default':

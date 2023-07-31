@@ -1,9 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
 from transformers import pipeline
-from youtube_transcript_api import YouTubeTranscriptApi
+from youtube_transcript_api import YouTubeTranscriptApi as api
 from Keyword import TextRank4Keyword
 import streamlit as st
+import re
+
 class Summary():
     def __init__(self,max_len = 100,min_len=60):
         self.punc = '''-_?\/'''
@@ -12,15 +14,19 @@ class Summary():
 
         
     def cleaning(link):
-        
-        #sample link = 'https://www.youtube.com/watch?v=DxL2HoqLbyA'
-        given_input = link
-        n = len( 'https://www.youtube.com/watch?v=')
-        if given_input[:5] == 'https':
-            video_ID = given_input[n:]
+
+        type1 = "youtube.com/watch?v="
+        type2 = "youtu.be/"
+
+        if re.search(t1, link):
+            id = re.split(t1, link)[1]
+        elif re.search(t2, txt):
+            id = re.split(t2, link)[1]
         else:
-            video_ID = given_input
-        detailed_transcript = YouTubeTranscriptApi.get_transcript(video_ID)
+            raise Exception("Not a valid YouTube URL")
+
+        detailed_transcript = api.get_transcript(id)
+
         N = len(detailed_transcript)
         splitted_transcript = []                
         #print(detailed_transcript[0],detailed_transcript[1])
