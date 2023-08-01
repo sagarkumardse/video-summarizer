@@ -9,7 +9,6 @@ class Summary():
         self.punc = '''-_?\/'''
         self.max_len = 100
         self.min_len=60
-
         
     def cleaning(link):
         
@@ -20,7 +19,11 @@ class Summary():
             video_ID = given_input[n:]
         else:
             video_ID = given_input
+
         detailed_transcript = YouTubeTranscriptApi.get_transcript(video_ID)
+        #detailed_transcript = self.retrive_transcript(video_ID)
+
+
         N = len(detailed_transcript)
         splitted_transcript = []                
         #print(detailed_transcript[0],detailed_transcript[1])
