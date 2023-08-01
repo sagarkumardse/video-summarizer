@@ -11,7 +11,6 @@ class Summary():
         self.punc = '''-_?\/'''
         self.max_len = 100
         self.min_len=60
-
         
     def cleaning(link):
 
@@ -26,6 +25,11 @@ class Summary():
             raise Exception("Not a valid YouTube URL")
 
         detailed_transcript = api.get_transcript(id)
+
+            video_ID = given_input
+
+        detailed_transcript = YouTubeTranscriptApi.get_transcript(video_ID)
+        #detailed_transcript = self.retrive_transcript(video_ID)
 
         N = len(detailed_transcript)
         splitted_transcript = []                
